@@ -112,6 +112,7 @@ public class ProductsPage {
 	private List<WebElement> listOfProducts;
 
 	public void selectAnyProduct(int index, WebDriver driver) throws FileNotFoundException, IOException {
+		utilities.waitRefreshed(listOfProducts, driver);
 		WebElement product = driver
 				.findElement(By.xpath("(//div[@id='facet-main']//product-item[@class='product-item  hhh Byee'])["
 						+ index + "]//div[@class='title-wish']/a"));
@@ -169,6 +170,14 @@ public class ProductsPage {
 
 	public void selectDateOldToNewOption() {
 		dateOldToNewOption.click();
+	}
+
+	//
+	@FindBy(xpath = "//span[text()='Price, high to low']")
+	private WebElement highToLowOption;
+
+	public void selectHighToLowOption() {
+		highToLowOption.click();
 	}
 
 	//

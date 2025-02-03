@@ -107,9 +107,9 @@ public class WebDriverUtilities {
 		wait.until(ExpectedConditions.elementToBeClickable(ele));
 	}
 	
-	public void waitRefreshed(WebElement ele, WebDriver driver) {
+	public void waitRefreshed(List<WebElement> ele, WebDriver driver) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(ele)));
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElements(ele)));
 	}
 
 }

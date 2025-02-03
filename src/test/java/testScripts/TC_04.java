@@ -18,27 +18,27 @@ import pom.ProductsPage;
 public class TC_04 extends BaseClass {
 	@Test
 	public void testCase4() throws EncryptedDocumentException, IOException, InterruptedException {
-//		4. click on signin
+		logger.info("click on signin");
 		Header header = new Header(driver);
 		String homepageTitle = dataUtilities.readPropertyFile("homepageTitle");
 		assertEquals(driver.getTitle(), homepageTitle);
 
 		header.clickLoginSignupButton();
 
-//		5. Enter the username
+		logger.info("Enter the username");
 		LoginPage loginPage = new LoginPage(driver);
 		String loginTitle = dataUtilities.readPropertyFile("loginTitle");
 		assertEquals(driver.getTitle(), loginTitle);
 
 		loginPage.emailAddressTextBox(dataUtilities.readExcelFile("Sheet1", 1, 1));
 
-//		6. Enter the password
+		logger.info("Enter the password");
 		loginPage.passwordTextBox(dataUtilities.readExcelFile("Sheet1", 1, 2));
 
-//		7. click on login
+		logger.info("Click on login");
 		loginPage.clickLoginButton();
 
-//		8. click on search bar and search for women hooded jackets
+		logger.info("Click on search bar and search for women hooded jackets");
 		String accountTitle = dataUtilities.readPropertyFile("accountTitle");
 		assertEquals(driver.getTitle(), accountTitle);
 
@@ -47,10 +47,10 @@ public class TC_04 extends BaseClass {
 		navBar.clickSeachFieldButton();
 		navBar.searchBoxField(dataUtilities.readPropertyFile("womenHoddedJackets"));
 
-//		9. click on view all results
+		logger.info("Click on view all results");
 		navBar.clickViewAllResultBtn();
 
-//		10. click on any product
+		logger.info("Click on any product");
 		ProductsPage products = new ProductsPage(driver);
 		boolean checkSearchResult = products.getSearchResultVerfication()
 				.contains(dataUtilities.readPropertyFile("womenHoddedJackets"));
@@ -58,19 +58,19 @@ public class TC_04 extends BaseClass {
 
 		products.selectAnyProduct(5, driver);
 
-//		11. select the size
+		logger.info("Select the size");
 		ProductDetailsPage productDetails = new ProductDetailsPage(driver);
 		assertEquals(productDetails.getProductTitle(), dataUtilities.readPropertyFile("productName"));
 
 		productDetails.selectSize();
 
-//		12. Increase the quantity to 2
+		logger.info("Increase the quantity to 2");
 		productDetails.clickIncCountBtn();
 
-//		13. Add the product to cart
+		logger.info("Add the product to cart");
 		productDetails.clickAddToCartBtn();
 
-//		14. intiate checkout
+		logger.info("Intiate checkout");
 		productDetails.clickInitialteCheckoutBtn();
 
 	}

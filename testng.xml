@@ -3,15 +3,16 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="testScripts.TC_02"/>
+      <class name="testScripts.TC_02_AddingProductToWishList"/>
       <class name="testScripts.TC_03"/>
       <class name="testScripts.TC_04"/>
       <class name="testScripts.TC_05"/>
       <class name="testScripts.TC_01_AddingProductTOCart"/>
-      <class name="testScripts.TC_09_10"/>
+      <class name="testScripts.TC_10"/>
       <class name="testScripts.TC_06"/>
       <class name="testScripts.TC_07"/>
       <class name="testScripts.TC_08"/>
+      <class name="testScripts.TC_09"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

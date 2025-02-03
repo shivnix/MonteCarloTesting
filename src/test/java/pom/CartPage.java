@@ -14,18 +14,32 @@ import genericLibraries.DataUtilities;
 import genericLibraries.WebDriverUtilities;
 
 public class CartPage {
-	private DataUtilities dataUtilies = new DataUtilities(); 
-	private WebDriverUtilities utilies = new WebDriverUtilities();
-	
-	@FindBy(xpath = "//a[contains(@class,'product-item-meta__title hidden-phone')]")
-	private WebElement cartItem;
+	private DataUtilities dataUtilities = new DataUtilities();
+	private WebDriverUtilities utilities = new WebDriverUtilities();
 
 	public CartPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
+	@FindBy(xpath = "//a[contains(@class,'product-item-meta__title hidden-phone')]")
+	private WebElement cartItem;
+
 	public WebElement getCartItem() {
 		return cartItem;
+	}
+
+	@FindBy(name = "note")
+	private WebElement noteBox;
+
+	public void enterNote(String note) {
+		noteBox.sendKeys(note);
+	}
+
+	@FindBy(xpath = "//button[@name='checkout']")
+	private WebElement checkOutButton;
+
+	public void clickCheckOutBtn() {
+		checkOutButton.click();
 	}
 
 	@FindBy(xpath = "//tr[@class='line-item']")
@@ -37,9 +51,9 @@ public class CartPage {
 		for (int i = 1; i <= cartItems.size(); i++) {
 			WebElement productElement = driver.findElement(
 					By.xpath("(//tr[@class='line-item'])[" + i + "]//div[@class='line-item__info']//a[2]"));
-			utilies.waitElement(productElement, driver);
+			utilities.waitElement(productElement, driver);
 			String productName = productElement.getText();
-			if (productName.equals(dataUtilies.readPropertyFile("productName"))) {
+			if (productName.equals(dataUtilities.readPropertyFile("productName"))) {
 				return true;
 			}
 		}

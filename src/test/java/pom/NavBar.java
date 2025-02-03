@@ -134,16 +134,14 @@ public class NavBar {
 	}
 
 	public void chooseSearchSuggestedProducts(int index, WebDriver driver) throws FileNotFoundException, IOException {
-		for (int i = 1; i < searchSuggestedProducts.size(); i++) {
-			WebElement product = driver.findElement(By.xpath("(//li[contains(@class,'predictive-search__product')])["
-					+ i + "]//div[@class='line-item__info']//span"));
-			utilities.scrollToElement(product, driver);
-			utilities.waitElement(product, driver);
-			String productName = product.getText();
-			dataUtilities.writePropertyFile("productName", productName);
-			product.click();
-			break;
-		}
+		utilities.waitRefreshed(searchSuggestedProducts, driver);
+		WebElement product = driver.findElement(By.xpath("(//li[contains(@class,'predictive-search__product')])["
+				+ index + "]//div[@class='line-item__info']//span"));
+		utilities.scrollToElement(product, driver);
+		utilities.waitElement(product, driver);
+		String productName = product.getText();
+		dataUtilities.writePropertyFile("productName", productName);
+		searchSuggestedProducts.get(index-1).click();
 	}
 
 	// Verification

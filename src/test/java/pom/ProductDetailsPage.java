@@ -19,12 +19,26 @@ public class ProductDetailsPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//div[@class='product_wishlist']//a")
-	private WebElement addToWishListIcon;
-
-	public void clickAddToWishListIcon() {
-		addToWishListIcon.click();
+//	@FindBy(xpath = "//div[@class='product_wishlist']//a")
+//	private WebElement addToWishListIcon;
+//	
+//	public void clickAddToWishListIcon() {
+//		addToWishListIcon.click();
+//	}
+	
+	@FindBy(xpath = "//div[@class='product_wishlist']//a[@data-tippy-content='Add to Wishlist']")
+	private WebElement addToWishListIconCheck;
+	
+	public void clickAddToWishListIconCheck() {
+		String tooltipText = addToWishListIconCheck.getDomAttribute("data-tippy-content");
+		System.out.println("ToolTip Text: " + tooltipText);
+		if ("Add to Wishlist".equals(tooltipText)) {
+			addToWishListIconCheck.click();
+            System.out.println("Item added to wishlist.");
+        }
 	}
+
+
 
 	@FindBy(id = "pincode")
 	private WebElement pinCodeBox;
