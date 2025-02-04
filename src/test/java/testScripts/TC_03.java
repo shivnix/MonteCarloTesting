@@ -5,6 +5,7 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -19,7 +20,7 @@ import pom.ProductsPage;
 public class TC_03 extends BaseClass {
 	@Test
 	public void testCase3() throws EncryptedDocumentException, IOException {
-
+		logger = LogManager.getLogger(TC_03.class);
 		logger.info("Click Login/Signup");
 		Header header = new Header(driver);
 		header.clickLoginSignupButton();

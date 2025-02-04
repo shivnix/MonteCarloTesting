@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testScripts.TC_02_AddingProductToWishList">
+      <class name="testScripts.TC_01_AddingProductTOCart">
         <methods>
-          <include name="testCase2"/>
+          <include name="TestCase"/>
           <include name="openApp"/>
           <include name="closeApp"/>
         </methods>
-      </class> <!-- testScripts.TC_02_AddingProductToWishList -->
+      </class> <!-- testScripts.TC_01_AddingProductTOCart -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

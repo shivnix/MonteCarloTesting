@@ -6,6 +6,8 @@ import static org.testng.Assert.assertTrue;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.testng.annotations.Test;
+
 import genericLibraries.BaseClass;
 import pom.CartPage;
 import pom.CheckOutPage;
@@ -17,9 +19,8 @@ import pom.ProductsPage;
 import pom.WishlistPage;
 
 public class TC_10 extends BaseClass {
-	public void testCase10() throws FileNotFoundException, IOException {
-		logger.info("Test Case 10 started");
-		
+	@Test
+	public void testCase10() throws FileNotFoundException, IOException {		
 		logger.info("Verify homepage");
 		Header header = new Header(driver);
 		String homepageTitle = dataUtilities.readPropertyFile("homepageTitle");
@@ -68,7 +69,7 @@ public class TC_10 extends BaseClass {
 		String productName = dataUtilities.readPropertyFile("productName");
 		assertEquals(productDetail.getProductTitle(), productName);
 
-		productDetail.clickAddToWishListIconCheck();
+		productDetail.clickAddToWishListIcon(driver);
 
 		logger.info("Click on wishlist");
 		header.clickWishListButton();

@@ -38,7 +38,7 @@ public class Listener1 implements ITestListener {
 	public void onTestFailure(ITestResult result) {
 		TakesScreenshot takescreenshot = (TakesScreenshot) BaseClass.driver;
 		File src = takescreenshot.getScreenshotAs(OutputType.FILE);
-		File dest = new File(AutoConstant.photoPath + "failed" + ".png");
+		File dest = new File(AutoConstant.photoPath + result.getMethod().getMethodName() + "failed" + ".png");
 		try {
 			FileUtils.copyFile(src, dest);
 		} catch (IOException e) {

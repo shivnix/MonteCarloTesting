@@ -44,7 +44,7 @@ public class TC_08 extends BaseClass {
 
 		logger.info("Click on the wishlist of the product.");
 		ProductDetailsPage prodcutDetails = new ProductDetailsPage(driver);
-		prodcutDetails.clickAddToWishListIconCheck();
+		prodcutDetails.clickAddToWishListIcon(driver);
 
 		logger.info("Verify the popup Text");
 		assertEquals(prodcutDetails.getPopupVerificationText(), dataUtilities.readPropertyFile("emailPopup"));

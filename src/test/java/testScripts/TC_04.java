@@ -56,7 +56,7 @@ public class TC_04 extends BaseClass {
 				.contains(dataUtilities.readPropertyFile("womenHoddedJackets"));
 		assertTrue(checkSearchResult, "Search result incorrect!");
 
-		products.selectAnyProduct(5, driver);
+		products.selectwomenHoddedJackets(5, driver);
 
 		logger.info("Select the size");
 		ProductDetailsPage productDetails = new ProductDetailsPage(driver);

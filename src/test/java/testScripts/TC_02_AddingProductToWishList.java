@@ -6,6 +6,7 @@ import static org.testng.Assert.assertTrue;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -19,6 +20,7 @@ import pom.WishlistPage;
 public class TC_02_AddingProductToWishList extends BaseClass {
 	@Test
 	public void testCase2() throws FileNotFoundException, IOException {
+		logger = LogManager.getLogger(TC_02_AddingProductToWishList.class);
 		Header header = new Header(driver);
 
 		logger.info("Click on Login/Signup icon");
@@ -55,7 +57,7 @@ public class TC_02_AddingProductToWishList extends BaseClass {
 		ProductDetailsPage productDetails = new ProductDetailsPage(driver);
 		assertEquals(productDetails.getProductTitle(), dataUtilities.readPropertyFile("productName"));
 
-		productDetails.clickAddToWishListIconCheck();
+		productDetails.clickAddToWishListIcon(driver);
 
 		logger.info("Click on Wishlist");
 		header.clickWishListButton();

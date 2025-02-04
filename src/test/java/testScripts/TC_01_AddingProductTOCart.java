@@ -5,8 +5,10 @@ import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
 //import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import genericLibraries.BaseClass;
 import pom.CartPage;
@@ -18,9 +20,10 @@ import pom.ProductsPage;
 import pom.WishlistPage;
 
 public class TC_01_AddingProductTOCart extends BaseClass {
-
+	private SoftAssert softAssert = new SoftAssert();
 	@Test
 	public void TestCase() throws IOException, Exception {
+		logger = LogManager.getLogger(TC_01_AddingProductTOCart.class);
 		logger.info("Click on Login/Signup icon");
 		Header header = new Header(driver);
 		String homepageTitle = dataUtilities.readPropertyFile("homepageTitle");
@@ -55,8 +58,10 @@ public class TC_01_AddingProductTOCart extends BaseClass {
 		logger.info("Click on size and select the size");
 		ProductsPage productPage = new ProductsPage(driver);
 		String acComforter = dataUtilities.readPropertyFile("acComforter");
-		assertTrue(driver.getTitle().contains(acComforter), acComforter + ": Page not found");
-
+		
+		
+		softAssert.assertTrue(driver.getTitle().contains(acComforter), acComforter + ": Page not found");
+		
 		productPage.clickSizeBtn(driver);
 		productPage.clickSingleOption(driver);
 
@@ -71,6 +76,8 @@ public class TC_01_AddingProductTOCart extends BaseClass {
 		logger.info("Scroll down click on availability and choose in stock");
 		productPage.clickAvailabilityBtn(driver);
 		productPage.clickInStockOption(driver);
+		
+		softAssert.assertAll();
 
 		logger.info("Click on any product and click add to wishlist.");
 		productPage.selectAnyProduct(5, driver);
@@ -79,7 +86,7 @@ public class TC_01_AddingProductTOCart extends BaseClass {
 		String productName = dataUtilities.readPropertyFile("productName");
 		assertEquals(productDetail.getProductTitle(), productName);
 
-		productDetail.clickAddToWishListIconCheck();
+		productDetail.clickAddToWishListIcon(driver);
 
 		logger.info("Click on wishlist button");
 		header.clickWishListButton();

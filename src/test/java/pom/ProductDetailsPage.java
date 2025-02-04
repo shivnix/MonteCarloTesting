@@ -3,10 +3,12 @@ package pom;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
 
 import genericLibraries.DataUtilities;
 import genericLibraries.WebDriverUtilities;
@@ -19,26 +21,17 @@ public class ProductDetailsPage {
 		PageFactory.initElements(driver, this);
 	}
 
-//	@FindBy(xpath = "//div[@class='product_wishlist']//a")
-//	private WebElement addToWishListIcon;
-//	
-//	public void clickAddToWishListIcon() {
-//		addToWishListIcon.click();
-//	}
-	
-	@FindBy(xpath = "//div[@class='product_wishlist']//a[@data-tippy-content='Add to Wishlist']")
-	private WebElement addToWishListIconCheck;
-	
-	public void clickAddToWishListIconCheck() {
-		String tooltipText = addToWishListIconCheck.getDomAttribute("data-tippy-content");
-		System.out.println("ToolTip Text: " + tooltipText);
-		if ("Add to Wishlist".equals(tooltipText)) {
-			addToWishListIconCheck.click();
-            System.out.println("Item added to wishlist.");
-        }
+	@FindBy(xpath = "//a[@data-tippy-content='Add to Wishlist']")
+	private WebElement addToWishListIcon;
+
+	public void clickAddToWishListIcon(WebDriver driver) {
+		try {
+			utilities.waitElementClick(addToWishListIcon, driver);
+			addToWishListIcon.click();
+		} catch (TimeoutException e) {
+			Reporter.log("Already Product is added to wishlist", true);
+		}
 	}
-
-
 
 	@FindBy(id = "pincode")
 	private WebElement pinCodeBox;

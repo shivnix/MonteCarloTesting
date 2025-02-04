@@ -124,6 +124,18 @@ public class ProductsPage {
 		product.click();
 	}
 
+	public void selectwomenHoddedJackets(int index, WebDriver driver) throws FileNotFoundException, IOException {
+		WebElement product = driver
+				.findElement(By.xpath("(//div[@id='facet-main']//product-item[@class='product-item  hhh Byee'])["
+						+ index + "]//div[@class='title-wish']/a"));
+
+		utilities.scrollToElement(product, driver);
+		utilities.waitElement(product, driver);
+		String productName = product.getText();
+		dataUtilities.writePropertyFile("productName", productName);
+		product.click();
+	}
+
 	// first product
 	@FindBy(xpath = "//*[@id=\"shopify-section-template--24170044031264__c29bfcea-d30e-4c65-986d-878a5f6594b5\"]/div/div/div/div/div[5]/a/img")
 	private WebElement stoleOption;
